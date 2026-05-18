@@ -1,0 +1,25 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px 20px;
+}
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+header h1 { margin-bottom: 5px; color: #1a2b4c; }
+header h2 { margin-top: 0; color: #5a6e85; font-weight: 400; }
+.counter-section {
+    background: #eef2f7;
+    padding: 10px 20px;
+    border-left: 4px solid #0066cc;
+    margin: 20px 0;
+    font-weight: bold;
+}

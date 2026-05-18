@@ -1,0 +1,10 @@
+# Ignore the local terraform binary executable
+terraform/terraform
+
+# Ignore the hidden terraform dependency directories
+**/.terraform/*
+
+# Ignore local state files (they contain secrets!)
+*.tfstate
+*.tfstate.*
+.terraform.tfstate*
