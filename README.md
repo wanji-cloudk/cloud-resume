@@ -60,7 +60,7 @@ const apiEndpoint = "https://YOUR_API_GATEWAY_[ID.execute-api.us-east-1.amazonaw
 2. Initialize and Deploy Infrastructure
 Navigate to your IaC workspace folder in your command-line workspace and execute resource alignment:
 
-Bash
+```bash
 cd terraform
 
 # Initialize provider modules and cloud registry backends
