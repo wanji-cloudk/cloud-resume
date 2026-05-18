@@ -5,6 +5,8 @@ Frontend Client
 └──► (Dynamic Content) ──► AWS API Gateway ──► AWS Lambda (Python) ──► Amazon DynamoDB (NoSQL Counter)
 
 
+
+
 ### 🔹 Frontend Layer
 * **Storage & Hosting:** AWS S3 configured for static website hosting.
 * **Tech Stack:** Semantic HTML5, CSS3 responsive layout, and Vanilla asynchronous JavaScript (`Fetch API`).
