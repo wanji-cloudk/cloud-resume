@@ -72,4 +72,4 @@ Role: Cloud & DevOps Engineer
 
 Email: Jwbh2022@gmail.com
 
-Project Hosting Endpoint: Live Portfolio Link
+Project Hosting Endpoint: https://julia-ithemani-cloud-resume-2026.s3-website-us-east-1.amazonaws.com
