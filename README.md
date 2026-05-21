@@ -1,72 +1,75 @@
-pip install boto3
+### Serverless Cloud Resume Infrastructure
+This repository contains the full-stack codebase and Infrastructure as Code (IaC) configurations for a serverless, highly available web application hosting a professional engineering portfolio.
 
-2, Install Terraform
-wget https://releases.hashicorp.com/terraform/1.7.0/terraform_1.7.0_linux_amd64.zip
+## Directory Structure
+.
+├── frontend/                  # Static website application code
+│   ├── index.html             # Resume content and structure
+│   ├── style.css              # Custom styling and layout design
+│   └── main.js                # Asynchronous JavaScript API counter logic
+└── terraform/                 # Infrastructure as Code (IaC) configurations
+    ├── main.tf                # Core AWS resource blueprints (S3, API Gateway, Lambda, DynamoDB)
+    ├── provider.tf            # AWS configuration constraints
+    └── terraform.tfstate      # Locally recorded infrastructure state configuration
 
-##Unzip the file:
-bashunzip terraform_1.7.0_linux_amd64.zip
+### Cloud Resources Provisioned Natively
+## aws_s3_bucket & aws_s3_bucket_website_configuration
+Configures access controls, bucket policies, and sets up index documents for static file hosting.
 
-## Move it to your PATH:
-```bash
-sudo mv terraform /usr/local/bin/
+## aws_dynamodb_table
+Schema configured with an atomic partition key (HashKey) to store global tracking metrics safely across concurrent access instances.
 
-##NB use below command if you have already install terraform
-Download from terraform.io/downloads
+## aws_lambda_function
+Packages code runtimes, defines execution limits, environment variables, and assigns explicit IAM Execution Roles.
 
-3, Download the aws installer:
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+## aws_api_gateway_rest_api
+Exposes /visitor endpoint structures, orchestrates backend integrations, and structures public access points.
 
-## Unzip it:
-unzip awscliv2.zip
+## aws_iam_role & aws_iam_policy
+Enforces the Principle of Least Privilege (PoLP), granting precise read/write access explicitly restricted to target DynamoDB tables.
 
-##Install it:
-sudo ./aws/install
+## aws_s3_object
+Direct declarative pipeline deployment maps that bind, content-type tag, and deploy local development workspace code to AWS live storage targets automatically.
 
-##Verify
-aws --version
+### Local Implementation & Replication Guide
+To replicate or modify this infrastructure stack locally, ensure you have configured your development system with the Terraform CLI and authenticated AWS credentials.
 
-## Make sure you sign up at aws.amazon.com
+### 1. Backend Endpoint Adjustments
+Navigate to frontend/main.js and modify the targeted backend endpoint mapping to match your deployed API Gateway stage:
 
-4,aws configure credetials:
+```javascript
+const apiEndpoint = "https://h0mgq2wpq5.execute-api.us-east-1.amazonaws.com/visitor";
 
-```bash
-aws configure
+2. Initialize and Deploy Infrastructure
+## Navigate to your IaC workspace folder in your terminal and execute the deployment lifecycle:
 
-  AWS Access Key ID:      - your key
-  AWS Secret Access Key:  - your secret
-  Default region name:    us-east-1
-  Default output format:  - press Enter
+cd terraform
 
-## Setup & Deployment
-
-## Clone the repository:
-bashgit clone https://github.com/your-username/EC2-Instance-State-Change-Monitoring.git
-cd EC2-Instance-State-Change-Monitoring/ec2-monitoring
-
-## Files and what they do:
-
-Terraform (`main.tf`) This file sets up our EC2 instance, the SNS topic for alerts, and the CloudWatch Event Rule that "listens" for EC2 state changes
-
-Boto3 (`upload.py`) Instead of using the AWS Console, i used this Python script to stop the instance. This will trigger the CloudWatch Event Rule i just built
-
-## Verify your AMI ID
-
-Get a valid Amazon Linux 2 AMI for us-east-1:
-
-```bash
-aws ec2 describe-images \
-  --owners amazon \
-  --filters "Name=name,Values=amzn2-ami-hvm-*-x86_64-gp2" \
-  --query "sort_by(Images, &CreationDate)[-1].ImageId" \
-  --output text \
-  --region us-east-1
-Type yes when prompted. Copy the instance_id from the output.
-
-## Deploy with Terraform
-```bash
+# Initialize provider modules and cloud registry backends
 terraform init
+
+# Run deterministic environment checks to view structural updates
 terraform plan
-terraform apply
+
+# Deploy infrastructure configurations natively to your live AWS account
+terraform apply -auto-approve
+
+# Deploy infrastructure configurations natively to your live AWS account
+terraform apply -auto-approve
+💡 Key Architectural Takeaways
+⚡ Atomic State Updates: The database access function relies on an optimized conditional database update script rather than reading and rewriting states sequentially, protecting transaction counters against runtime race conditions.
+
+Infrastructure Decoupling: Modifying client interface layouts requires no functional code changes to API endpoints or resource permissions, highlighting true microservices engineering patterns.
+
+Optimized Cost Modeling: By opting for a serverless execution design, standard baseline operating costs remain precisely $0.00 within the AWS Free Tier, scaling lineally with operational use.
+
+----
+
+👥 Professional Contact
+Name: Julia Ithemani
+
+Role: Cloud & DevOps Engineer
+
+Email: Jwbh2022@gmail.com
 
 Project Hosting Endpoint: Live Portfolio Link
-"""
