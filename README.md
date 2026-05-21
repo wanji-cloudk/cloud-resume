@@ -12,6 +12,17 @@ This repository contains the full-stack codebase and Infrastructure as Code (IaC
     ├── provider.tf            # AWS configuration constraints
     └── terraform.tfstate      # Locally recorded infrastructure state configuration
 
+
+
+
+
+
+
+
+
+
+    
+
 ### Cloud Resources Provisioned Natively
 ## aws_s3_bucket & aws_s3_bucket_website_configuration
 Configures access controls, bucket policies, and sets up index documents for static file hosting.
